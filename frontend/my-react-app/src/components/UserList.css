@@ -1,0 +1,42 @@
+.user-list-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    background: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra sutil para el contenedor */
+    border-radius: 8px; /* Bordes redondeados */
+    margin-top: 2rem; /* Margen superior */
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+}
+
+li {
+    display: flex;
+    justify-content: space-between; /* Espaciado entre el nombre del usuario y el botón */
+    align-items: center;
+    padding: 0.5rem;
+    border-bottom: 1px solid #eee; /* Línea divisoria */
+}
+
+button {
+    background-color: #f44336; /* Fondo del botón de eliminar */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    transition: background-color 0.3s; /* Transición suave para el hover */
+}
+
+button:hover {
+    background-color: #d32f2f; /* Cambia de color cuando el mouse pasa sobre el botón */
+}
+
+h1 {
+    margin-bottom: 1rem; /* Espaciado inferior para el encabezado */
+}
