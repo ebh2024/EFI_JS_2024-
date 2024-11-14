@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './components/Login.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Login = () => {
     const [username, setUsername] = useState('');
@@ -9,7 +9,7 @@ const Login = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        fetch('/api/login', {  // Cambiado a /api/login
+        fetch('/api/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -19,11 +19,7 @@ const Login = () => {
         .then(response => response.json())
         .then(data => {
             if (data.access_token) {
-                // Almacenar el token y los datos del usuario
                 localStorage.setItem('access_token', data.access_token);
-                console.log(data.user); // Asegúrate de que data.user no es undefined
-
-                // Redirigir a otra página o actualizar la interfaz según sea necesario
                 window.location.href = '/user-list';
             } else {
                 setMessage('Invalid username or password');
@@ -33,28 +29,36 @@ const Login = () => {
     }
 
     return (
-        <div>
-            <h1>Login</h1>
-            <form onSubmit={handleSubmit}>
-                <label htmlFor="username">Username:</label>
-                <input
-                    type="text"
-                    id="username"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
-                    required
-                />
-                <label htmlFor="password">Password:</label>
-                <input
-                    type="password"
-                    id="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
-                />
-                <button type="submit">Login</button>
-            </form>
-            {message && <p>{message}</p>}
+        <div className="d-flex justify-content-center align-items-center vh-100 bg-light">
+            <div className="card p-4" style={{ width: '22rem' }}>
+                <h2 className="text-center mb-4">Login</h2>
+                <form onSubmit={handleSubmit}>
+                    <div className="mb-3">
+                        <label htmlFor="username" className="form-label">Username:</label>
+                        <input
+                            type="text"
+                            id="username"
+                            className="form-control"
+                            value={username}
+                            onChange={(e) => setUsername(e.target.value)}
+                            required
+                        />
+                    </div>
+                    <div className="mb-3">
+                        <label htmlFor="password" className="form-label">Password:</label>
+                        <input
+                            type="password"
+                            id="password"
+                            className="form-control"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            required
+                        />
+                    </div>
+                    <button type="submit" className="btn btn-primary w-100">Login</button>
+                </form>
+                {message && <p className="text-danger text-center mt-3">{message}</p>}
+            </div>
         </div>
     );
 }
